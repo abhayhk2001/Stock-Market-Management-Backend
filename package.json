@@ -1,0 +1,27 @@
+{
+  "name": "stock-market-management-backend",
+  "version": "1.0.0",
+  "description": "Database system for managing stocks using React, NodeJS, MySQL, Redis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhayhk2001/Stock-Market-Management-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhayhk2001/Stock-Market-Management-Backend/issues"
+  },
+  "homepage": "https://github.com/abhayhk2001/Stock-Market-Management-Backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15"
+  }
+}
