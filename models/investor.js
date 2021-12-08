@@ -7,7 +7,7 @@ Classes defined:
 5.Bank_Details
 */
 
-class Investor{
+class Investor {
   /*
   Instance variables of this class:
   iid
@@ -16,67 +16,69 @@ class Investor{
   lastName
   phoneNumber
   noOfInvestments
-  loginCredentials(seperate class)
-  privateDetails(seperate class)
-  investments(seperate class)
+  loginCredentials(separate class)
+  privateDetails(separate class)
+  investments(separate class)
   */
- constructor(investor){
-   this.iid = investor.iid;
-   this.firstName = investor.firstName;
-   this.middleName = investor.middleName;
-   this.lastName = investor.lastName;
-   this.phoneNumber = investor.phoneNumber;
-   this.noOfInvestments = investor.noOfInvestments;
-   this.loginCredentials = investor.loginCredentials;
-   this.privateDetails = investor.privateDetails;
-   this.investments = investor.investments;
- }
+  constructor(investor) {
+    this.iid = investor.iid;
+    this.firstName = investor.firstName;
+    this.middleName = investor.middleName;
+    this.lastName = investor.lastName;
+    this.phoneNumber = investor.phoneNumber;
+    this.noOfInvestments = investor.noOfInvestments;
+    this.loginCredentials = investor.loginCredentials;
+    this.privateDetails = new Private_Details(investor.privateDetails);
+  }
 }
 
-class Investments{
+class Investments {
   /*
   instance variables dateOfPurchase, numberOfShares, currentAmount, purchaseAmount, status
   */
- constructor(investments){
-   this.dateOfPurchase = investments.dateOfPurchase;
-   this.numberOfShares = investments.numberOfShares;
-   this.currentAmount = investments.currentAmount;
-   this.purchaseAmount = invstments.purchaseAmount;
-   this.status = investments.status;
- }
+  constructor(investments) {
+    this.investor = investments.investor;
+    this.dateOfPurchase = investments.dateOfPurchase;
+    this.numberOfShares = investments.numberOfShares;
+    this.currentAmount = investments.currentAmount;
+    this.purchaseAmount = investments.purchaseAmount;
+    this.status = investments.status;
+    this.company = investments.company;
+  }
 }
 
-class Investor_Login_Credentials{
+class Investor_Login_Credentials {
   /*
   instance variables are userName and password
   */
-  constructor(loginCredentials){
+  constructor(loginCredentials) {
+    this.id = loginCredentials.id;
     this.userName = loginCredentials.userName;
     this.password = loginCredentials.password;
   }
 }
 
-class Private_Details{
+class Private_Details {
   /*
-  Instance variables are aadharNumber, panNumber, bankDetails(seperate Class)
+  Instance variables are aadharNumber, panNumber, bankDetails(separate Class)
   */
- constructor(privateDetails){
-   this.addharNumber = privateDetails.addharNumber;
-   this.panNumber = privateDetails.panNumber;
-   this.bankDetails = privateDetails.bankDetails;
- }
+  constructor(privateDetails) {
+    this.addharNumber = privateDetails.addharNumber;
+    this.panNumber = privateDetails.panNumber;
+    this.bankDetails = new Bank_Details(privateDetails.bankDetails);
+  }
 }
 
-class Bank_Details{
+class Bank_Details {
   /*
   Instance variables are accountNumber, bankName, ifsc, branch
   */
- constructor(bankDetails){
-   this.accountNumber = bankDetails.accountNumber;
-   this.bankName = bankDetails.bankName;
-   this.ifsc = bankDetails.ifsc;
-   this.branch = bankDetails.branch;
- }
+  constructor(bankDetails) {
+    this.accountNumber = bankDetails.accountNumber;
+    this.bankName = bankDetails.bankName;
+    this.ifsc = bankDetails.ifsc;
+    this.branch = bankDetails.branch;
+  }
 }
 
-module.exports = Investor;
+export { Investor, Investments, Investor_Login_Credentials };
