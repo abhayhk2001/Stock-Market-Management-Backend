@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 var investorRouter = require("./routes/investor.routes");
 var companyRouter = require("./routes/company.routes");
-var adminRouter = require("./routes/admin.routes");
+var adminRouter = require("./routes/exchange.routes");
 
 var app = express();
 
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // routing
 app.use("/investor", investorRouter);
 app.use("/company", companyRouter);
-app.use("/admin", adminRouter);
+app.use("/exchange", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -27,9 +27,10 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({
-    message: "Error Message",
+    message: "Error message",
   });
 });
 
-app.listen();
+app.listen(process.env.PORT || 3000);
+
 module.exports = app;

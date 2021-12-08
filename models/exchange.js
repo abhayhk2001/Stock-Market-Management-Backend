@@ -18,4 +18,4 @@ class Exchange_Login {
   }
 }
 
-export default Exchange;
+export default { Exchange, Exchange_Login };
