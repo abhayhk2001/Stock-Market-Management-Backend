@@ -18,19 +18,21 @@ app.use("/company", companyRouter);
 app.use("/exchange", adminRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  res.status(err.status || 404).json({
-    message: "No Such Route Exists",
-  });
-});
+// app.use(function (req, res, next) {
+//   res.status(err.status || 404).json({
+//     message: "No Such Route Exists",
+//   });
+// });
 
 // error handler
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500).json({
-    message: "Error message",
-  });
-});
+// app.use(function (err, req, res, next) {
+//   res.status(err.status || 500).json({
+//     message: "Error message",
+//   });
+// });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000,()=>{
+  console.log("Server started...");
+});
 
 module.exports = app;
