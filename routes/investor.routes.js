@@ -5,7 +5,7 @@ const router = express.Router();
 // router.get("/login", investorControllers.getMe);//sample for testing db connectivity
 
 router.post("/login",investorControllers.authorize);
-router.post("register",investorControllers.register);
+router.post("/register",investorControllers.register);
 router.get("/profile",investorControllers.getProfile);
 router.post("/addshare",investorControllers.addShare);
 router.delete("/deleteshare",investorControllers.deleteShare);

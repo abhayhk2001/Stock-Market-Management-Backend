@@ -1,0 +1,93 @@
+@host = http://localhost:3000
+
+###
+GET {{host}}
+
+###
+post {{host}}/company/login
+Content-Type: application/json
+
+{
+    "username": "comp2user",
+    "password": "passwor"
+}
+
+###
+get {{host}}/company/profile
+Content-Type: application/json
+id: 23
+
+
+###
+get {{host}}/company/companydetails
+Content-Type: application/json
+id: 1
+
+###
+get {{host}}/company/investordetails
+Content-Type: application/json
+iid:1
+cid:23
+
+
+###
+post {{host}}/investor/login
+Content-Type: application/json
+
+{
+    "username": "abdur0118",
+    "password": "user1"   
+}
+
+###
+post {{host}}/investor/register
+Content-Type: application/json
+
+{
+    "id": 5,
+    "firstname": "fname",
+    "lastname":"lname",
+    "middlename":"mname",
+    "pnum":"9972619486",
+    "noinvestments": 5,
+    "email": "abd@exam.com",
+    "username":"user1",
+    "password":"pass1",
+    "aadhar": "123412341234",
+    "pan": "erte1233fe",
+    "account": "123409871234",
+    "bankname":"SBIS",
+    "ifsc":"SIESPDkeid",
+    "branch":"bang",
+    "bankpnum":"12340987"
+
+}
+
+###
+get {{host}}/investor/profile
+id: 2
+
+###
+post {{host}}/investor/addshare
+Content-Type: application/json
+
+{
+    "dateofpurchase": "2019-9-8",
+    "numofshares": 5,
+    "current":890,
+    "purchaseamt":90,
+    "iid":1,
+    "cid":1
+}
+
+###
+delete {{host}}/investor/deleteshare
+Content-Type: application/json
+iid: 1
+cid: 23
+date: "2019-9-8"
+
+###
+get {{host}}/investor/investments
+Content-Type: application/json
+id: 1

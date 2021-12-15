@@ -1,6 +1,8 @@
 var express = require("express");
 var logger = require("morgan");
 const bodyParser = require("body-parser");
+// const client = require("./dbInteraction/redis");
+
 var investorRouter = require("./routes/investor.routes");
 var companyRouter = require("./routes/company.routes");
 var adminRouter = require("./routes/exchange.routes");
@@ -15,6 +17,10 @@ app.use(bodyParser.json());
 app.use("/investor", investorRouter);
 app.use("/company", companyRouter);
 app.use("/exchange", adminRouter);
+
+app.get("/", (req, res) => {
+  res.json({ message: "success" });
+});
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

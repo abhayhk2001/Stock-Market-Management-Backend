@@ -2,11 +2,15 @@ const express = require("express");
 const companyControllers = require("../controllers/company.controllers");
 const router = express.Router();
 
-router.get("/login", companyControllers.getMe);
+router.post("/login", companyControllers.authorize);
+router.get("/profile", companyControllers.getProfile);
+router.get("/companydetails", companyControllers.getCompanyDetails);
+router.get("/investordetails", companyControllers.getInvestorDetails);
+
 /* 
-/login->post
-/profile->get
-/companydetails->get
+/login->post 1
+/profile->get 1
+/companydetails->get 
 /investordetails->get
 */
 module.exports = router;

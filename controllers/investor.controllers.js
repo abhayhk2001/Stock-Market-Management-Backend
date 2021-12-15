@@ -37,7 +37,7 @@ const register = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  investorDb.getInvestorDetails(req.body, (state, result) => {
+  investorDb.getInvestorDetails(req.headers, (state, result) => {
     if (state == true) {
       res.status(200).json({
         message: "success",
@@ -66,7 +66,7 @@ const addShare = async (req, res) => {
 };
 
 const deleteShare = async (req, res) => {
-  investorDb.removeInvestment(req.body, (state) => {
+  investorDb.removeInvestment(req.headers, (state) => {
     if (state == true) {
       res.status(200).json({
         message: "success",
@@ -80,7 +80,7 @@ const deleteShare = async (req, res) => {
 };
 
 const getInvestments = async (req, res) => {
-  investorDb.getInvestmentData(req.body, (state, result) => {
+  investorDb.getInvestmentData(req.headers, (state, result) => {
     if (state == true) {
       res.status(200).json({
         message: "success",
