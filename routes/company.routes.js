@@ -6,7 +6,6 @@ router.get("/login", companyControllers.getMe);
 /* 
 /login->post
 /profile->get
-/ordershare->post
 /companydetails->get
 /investordetails->get
 */

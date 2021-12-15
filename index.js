@@ -1,8 +1,6 @@
 var express = require("express");
 var logger = require("morgan");
 const bodyParser = require("body-parser");
-const client = require("./dbInteraction/redis");
-
 var investorRouter = require("./routes/investor.routes");
 var companyRouter = require("./routes/company.routes");
 var adminRouter = require("./routes/exchange.routes");
@@ -32,7 +30,7 @@ app.use("/exchange", adminRouter);
 //   });
 // });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log("Server started...");
 });
 

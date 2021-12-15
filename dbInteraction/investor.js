@@ -1,19 +1,12 @@
 var db = require.main.require("./dbInteraction/config");
 
-// function authorizeLogin(callback){
-//     var sql = "SELECT pnum FROM investor";
-//     db.executeQuery(sql, function(err,result) {
-//         callback(result);
-//         console.log(result)
-
-//     });
-// }//sample for testing db connectivity
-
 function authorizeLogin(username, password, isvalid) {
-  var sql = "select password from investorlogin where username = ?";
-  db.executeQuery(sql, [username], function (err, result) {
+  var sql = `select * from investorlogin where username = '${username}'`;
+  console.log(sql);
+  db.executeQuery(sql, [], function (result, err) {
+    console.log(err);
     if (result[0].password == password) {
-      isvalid(true);
+      isvalid(result[0].iid);
     } else {
       isvalid(false);
     }
@@ -23,7 +16,7 @@ function authorizeLogin(username, password, isvalid) {
 function registerInvestor(data, success) {
   var sql = `insert into investor
                 values (${data.id},'${data.firstname}','${data.lastname}','${data.middlename}','${data.pnum}',${data.noinvestments})`;
-  db.executeQuery(sql, [username], function (err, result) {
+  db.executeQuery(sql, [username], function (result, err) {
     if (result[0].password == password) {
       isvalid(true);
     } else {
@@ -34,7 +27,7 @@ function registerInvestor(data, success) {
 
 function getInvestorDetails(data, success) {
   var sql = `select * from investor where iid = ?`;
-  db.executeQuery(sql, [data.id], function (err, result) {
+  db.executeQuery(sql, [data.id], function (result, err) {
     if (err == null) {
       success(true, result[0]);
     } else {
@@ -69,7 +62,7 @@ function removeInvestment(data, success) {
 
 function getInvestmentData(data, success) {
   var sql = `select * from investments where iid = ?`;
-  db.executeQuery(sql, [data.id], function (err, result) {
+  db.executeQuery(sql, [data.id], function (result, err) {
     if (err == null) {
       success(true, result[0]);
     } else {
