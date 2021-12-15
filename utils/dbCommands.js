@@ -53,7 +53,7 @@ con.connect(function (err) {
   });
 
   s =
-    "create table exchange(code int, name varchar(255), curr varchar(255), marketcap_in_trillions float, nooflistings int, addid int,primary key(code), FOREIGN KEY (addid) REFERENCES location(addid))";
+    "create table exchange(code int, name varchar(255), curr varchar(255), marketcap_in_billions float, nooflistings int, addid int,primary key(code), FOREIGN KEY (addid) REFERENCES location(addid))";
   con.query(s, function (err) {
     if (err) console.log(err);
     console.log("Connected!");
