@@ -1,5 +1,6 @@
 create database dbmsproj
 
+
 tables
 create table bankdetails(accno varchar(255), name, ifsc, branch, pnum, primary key (accno))
 create table investor(iid int, firstname varchar(255), lastname varchar(255), middlename varchar(255), pnum varchar(255), noinvestments int, email varchar(255), primary key(iid))
