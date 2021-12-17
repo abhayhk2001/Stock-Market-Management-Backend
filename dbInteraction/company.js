@@ -28,6 +28,7 @@ function authorizeLogin(username, password, isvalid) {
     return categories;
   }
 
+  
   function getProfile(id, callback){
       let categories = getCatogories(id);
       var sql = `select * from company where cid = '${id}'`;

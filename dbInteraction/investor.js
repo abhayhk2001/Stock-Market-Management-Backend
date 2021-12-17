@@ -128,6 +128,7 @@ function addInvestment(data, success) {
   });
 }
 
+
 function removeInvestment(data, success) {
   var sql = `update investments set status = 'sold' where iid = ${data.iid} and cid = '${data.cid}' and dateofpurchase = ${data.date}`;
   // dateofpurchase varchar(255), numofshares int, curramt int, purchaseamt int, status varchar(255), iid int, cid int, FOREIGN KEY (iid) REFERENCES investor(iid), FOREIGN KEY (cid) REFERENCES company(cid)
