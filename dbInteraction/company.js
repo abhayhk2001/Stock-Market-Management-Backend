@@ -14,7 +14,7 @@ function authorizeLogin(username, password, isvalid) {
 
   function getCatogories(cid){
     let categories = new Array();
-    var sql = `select catid from categorized where cid = ${cid}`
+    var sql = `select catid from categorized where cid = '${cid}'`
     db.executeQuery(sql,function(err,result){
       // console.log("catid",result);
       for(let i = 0;i<result.length;i++){
@@ -30,7 +30,7 @@ function authorizeLogin(username, password, isvalid) {
 
   function getProfile(id, callback){
       let categories = getCatogories(id);
-      var sql = `select * from company where cid = ${id}`;
+      var sql = `select * from company where cid = '${id}'`;
       db.executeQuery(sql,function(err,result){
           if(!err && result.length!=0){
               sql = `select * from location where addid = ${result[0].addid}`
@@ -49,7 +49,7 @@ function authorizeLogin(username, password, isvalid) {
   function getCompanyDetails(id,callback){
     //cid | name  | revenue | noofshares | pubshares | shareval | registration | exccode | addid
     let categories = getCatogories(id);
-    var sql = `select cid, name, noofshares, pubshares, shareval, registration, exccode, addid from company where cid = ${id}`;
+    var sql = `select cid, name, noofshares, pubshares, shareval, registration, exccode, addid from company where cid = '${id}'`;
     db.executeQuery(sql,function(err,result){
         // console.log(err);
         if(!err && result.length!=0){
@@ -72,7 +72,7 @@ function authorizeLogin(username, password, isvalid) {
     db.executeQuery(sql,function(err,result){
         // console.log(err);
         if(!err && result.length!=0){
-            sql = `select dateofpurchase, numofshares, curramt, purchaseamt, status from investments where iid = ${iid} and cid = ${cid}`
+            sql = `select dateofpurchase, numofshares, curramt, purchaseamt, status from investments where iid = ${iid} and cid = '${cid}'`
             db.executeQuery(sql,function(err,addresult){
                   result[0]['investment-details'] = addresult;
                 callback(result,true);

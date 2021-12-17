@@ -44,22 +44,22 @@ post {{host}}/investor/register
 Content-Type: application/json
 
 {
-    "id": 5,
-    "firstname": "fname",
-    "lastname":"lname",
-    "middlename":"mname",
-    "pnum":"9972619486",
-    "noinvestments": 5,
-    "email": "abd@exam.com",
-    "username":"user1",
-    "password":"pass1",
-    "aadhar": "123412341234",
-    "pan": "erte1233fe",
-    "account": "123409871234",
-    "bankname":"SBIS",
-    "ifsc":"SIESPDkeid",
-    "branch":"bang",
-    "bankpnum":"12340987"
+    "id": 4,
+    "firstname": "harihar",
+    "lastname":"pawar",
+    "middlename":"s",
+    "pnum":"8532534610",
+    "noinvestments": 2,
+    "email": "har@example.com",
+    "username":"hariD",
+    "password":"pass4",
+    "aadhar": "782691521298",
+    "pan": "AKRRR5441P",
+    "account": "02423423335123",
+    "bankname":"Punjab national bank",
+    "ifsc":"PUNB0436400",
+    "branch":"Mumbai",
+    "bankpnum":"51342242"
 
 }
 
@@ -72,12 +72,12 @@ post {{host}}/investor/addshare
 Content-Type: application/json
 
 {
-    "dateofpurchase": "2019-9-8",
-    "numofshares": 5,
-    "current":890,
-    "purchaseamt":90,
-    "iid":1,
-    "cid":1
+    "dateofpurchase": "2020-2-25",
+    "numofshares": 10,
+    "current":180,
+    "purchaseamt":200,
+    "iid":5,
+    "cid":"AAPL"
 }
 
 ###

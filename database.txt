@@ -1,0 +1,253 @@
+create database dbmsproj
+
+tables
+create table bankdetails(accno varchar(255), name, ifsc, branch, pnum, primary key (accno))
+create table investor(iid int, firstname varchar(255), lastname varchar(255), middlename varchar(255), pnum varchar(255), noinvestments int, email varchar(255), primary key(iid))
+create table privatedetails(aadhar varchar(255), pan varchar(255), iid int, accno varchar(255), foreign key (iid) references investor (iid), foreign key (accno) references bankdetails (accno))
+create table location(addid int, addline1 varchar(255), addline2 varchar(255), city varchar(255), country varchar(255), state varchar(255),zip varchar(255), primary key (addid))
+create table company(cid varchar(255), name varchar(255), revenue bigint, noofshares int, pubshares int, shareval int, registration enum('yes','no'), exccode varchar(255), addid int, primary key (cid), foreign key (addid) references location(addid))
+create table category(catid int, categoryname varchar(255), primary key(catid))
+create table categorized(cid varchar(255), catid int, foreign key (cid) references company (cid), foreign key (catid) references category (catid))
+create table companylogin(cid varchar(255), username varchar(255), password varchar(255), foreign key(cid) references compnay(cid))
+create table investorlogin(iid varchar(255), username varchar(255), password varchar(255), foreign key(iid) references investor(iid))
+create table exchange(code varchar(255), name varchar(255), curr varchar(255), marketcap_in_millions float, nooflistings int, addid int,primary key (code), foreign key (addid) references location (addid))
+create table investments(dateofpurchase date, numofshares int, curramt int, purchaseamt int, status enum('sold','not sold'), iid int, cid varchar(255), foreign key (iid) references investor (iid), foreign key (cid) references company (cid))
+
+
+
+
+insert into location values(1,'3rd cross','sonia nagar','hospet','india','karnataka','583201');
+insert into location values(2,'5399p','sector 38','gurgaon','india','haryana','72001');
+insert into location values(3,'s 50','high school','hospet','india','karnataka','583225');
+insert into location values(4,'sakhram kripa','dadar','mumbai','country','maharashtra','400028');
+insert into location values(5,'khernagar','bandra','mumbai','india','maharashtra','400051');
+
+
+insert into exchange values("NSE"  , "National Exchange" , "cur" , 1200 ,   103 ,1)
+
+insert into company values('AAPL','Apple',1000,2000,1490,175,'yes','NSE',1);
+insert into company values('MSFT','Microsoft',16800,8000,7990,330,'yes','NSE',2);
+insert into company values('TSLA','Tesla',3154,2500,1990,938,'yes','NSE',3);
+insert into company values('RELIANCE','Reliance',4830,1000,900,2413,'yes','NSE',4);
+insert into company values('ABNB','Air bnb',337,583,530,160,'yes','NSE',5);
+
+insert into companylogin values('AAPL','appleuser','applepass');
+insert into companylogin values('MSFT','microsoftuser','microsoftpass');
+insert into companylogin values('ABNB','airbnbuser','airbnbpass');
+insert into companylogin values('RELIANCE','relianceuser','reliancepass');
+insert into companylogin values('TSLA','teslauser','teslapass');
+
+insert into category values(1,'technology');
+insert into category values(2,'travel');
+insert into category values(3,'automobile');
+insert into category values(4,'oil and petroleum');
+
+insert into categorized values('AAPL',1);
+insert into categorized values('ABNB',2);
+insert into categorized values('MSFT',1);
+insert into categorized values('RELIANCE',4);
+insert into categorized values('TSLA',3);
+
+
+run in test.http in post /investor/register
+{
+    "id": 1,
+    "firstname": "abdur",
+    "lastname":"rahaman",
+    "middlename":null,
+    "pnum":"9972619480",
+    "noinvestments": 5,
+    "email": "abd@example.com",
+    "username":"abdur0118",
+    "password":"pass1",
+    "aadhar": "789792924390",
+    "pan": "EKNPR5801Y",
+    "account": "06093210005643",
+    "bankname":"Syndicate",
+    "ifsc":"SYNB0000609",
+    "branch":"Hospet",
+    "bankpnum":"12340987"
+
+}
+
+{
+    "id": 2,
+    "firstname": "ankit",
+    "lastname":"chahar",
+    "middlename":"singh",
+    "pnum":"9572519289",
+    "noinvestments": 9,
+    "email": "ank@example.com",
+    "username":"ankitC",
+    "password":"pass2",
+    "aadhar": "789691221390",
+    "pan": "EKNER5851Y",
+    "account": "06023210065343",
+    "bankname":"Syndicate",
+    "ifsc":"CNRB0000469",
+    "branch":"Bangalore",
+    "bankpnum":"52330287"
+
+}
+
+{
+    "id": 3,
+    "firstname": "abhay",
+    "lastname":"kashyap",
+    "middlename":"h",
+    "pnum":"8532514219",
+    "noinvestments": 12,
+    "email": "abh@example.com",
+    "username":"abhayUS",
+    "password":"pass3",
+    "aadhar": "682691521691",
+    "pan": "UKRER5251P",
+    "account": "03023223055143",
+    "bankname":"State Bank of India",
+    "ifsc":"SBIN0000813",
+    "branch":"Bangalore",
+    "bankpnum":"53332257"
+
+}
+
+
+{
+    "id": 4,
+    "firstname": "harihar",
+    "lastname":"pawar",
+    "middlename":"s",
+    "pnum":"8532534610",
+    "noinvestments": 2,
+    "email": "har@example.com",
+    "username":"hariD",
+    "password":"pass4",
+    "aadhar": "782691521298",
+    "pan": "AKRRR5441P",
+    "account": "02423423335123",
+    "bankname":"Punjab national bank",
+    "ifsc":"PUNB0436400",
+    "branch":"Mumbai",
+    "bankpnum":"51342242"
+
+}
+
+{
+    "id": 5,
+    "firstname": "Prajwal",
+    "lastname":"s",
+    "middlename":null,
+    "pnum":"8112134719",
+    "noinvestments": 11,
+    "email": "praju@example.com",
+    "username":"praju",
+    "password":"pass5",
+    "aadhar": "882694321210",
+    "pan": "ATRTR3431P",
+    "account": "02124329395223",
+    "bankname":"Axis",
+    "ifsc":"UTIB0000007",
+    "branch":"Delhi",
+    "bankpnum":"81311232"
+
+}
+
+
+run in test.http in post /investor/addshare
+{
+    "dateofpurchase": "2020-3-2",
+    "numofshares": 5,
+    "current":940,
+    "purchaseamt":700,
+    "iid":2,
+    "cid":"TSLA"
+}
+
+{
+    "dateofpurchase": "2020-2-4",
+    "numofshares": 2,
+    "current":2300,
+    "purchaseamt":2430,
+    "iid":2,
+    "cid":"RELIANCE"
+}
+
+{
+    "dateofpurchase": "2020-1-4",
+    "numofshares": 6,
+    "current":300,
+    "purchaseamt":330,
+    "iid":2,
+    "cid":"MSFT"
+}
+
+{
+    "dateofpurchase": "2019-4-2",
+    "numofshares": 4,
+    "current":180,
+    "purchaseamt":160,
+    "iid":1,
+    "cid":"ABNB"
+}
+
+{
+    "dateofpurchase": "2019-9-8",
+    "numofshares": 5,
+    "current":890,
+    "purchaseamt":90,
+    "iid":1,
+    "cid":"AAPL"
+}
+
+{
+    "dateofpurchase": "2019-7-2",
+    "numofshares": 7,
+    "current":180,
+    "purchaseamt":160,
+    "iid":3,
+    "cid":"AAPL"
+}
+
+{
+    "dateofpurchase": "2019-9-12",
+    "numofshares": 8,
+    "current":180,
+    "purchaseamt":160,
+    "iid":3,
+    "cid":"ABNB"
+}
+
+{
+    "dateofpurchase": "2020-4-2",
+    "numofshares": 10,
+    "current":350,
+    "purchaseamt":345,
+    "iid":4,
+    "cid":"MSFT"
+}
+
+{
+    "dateofpurchase": "2021-1-5",
+    "numofshares": 12,
+    "current":2510,
+    "purchaseamt":2440,
+    "iid":4,
+    "cid":"RELIANCE"
+}
+
+{
+    "dateofpurchase": "2020-7-15",
+    "numofshares": 9,
+    "current":900,
+    "purchaseamt":870,
+    "iid":5,
+    "cid":"TSLA"
+}
+
+{
+    "dateofpurchase": "2020-2-25",
+    "numofshares": 10,
+    "current":180,
+    "purchaseamt":200,
+    "iid":5,
+    "cid":"AAPL"
+}

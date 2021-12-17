@@ -116,7 +116,7 @@ function getBankDetails(presult,accno,success){
 }
 
 function addInvestment(data, success) {
-  var sql = `insert into investments values('${data.dateofpurchase}',${data.numofshares},${data.current},${data.purchaseamt},'not sold',${data.iid},${data.cid})`;
+  var sql = `insert into investments values('${data.dateofpurchase}',${data.numofshares},${data.current},${data.purchaseamt},'not sold',${data.iid},'${data.cid}'   )`;
   // dateofpurchase varchar(255), numofshares int, curramt int, purchaseamt int, status varchar(255), iid int, cid int, FOREIGN KEY (iid) REFERENCES investor(iid), FOREIGN KEY (cid) REFERENCES company(cid)
   db.executeQuery(sql, function (err) {
     console.log(err);
@@ -129,7 +129,7 @@ function addInvestment(data, success) {
 }
 
 function removeInvestment(data, success) {
-  var sql = `update investments set status = 'sold' where iid = ${data.iid} and cid = ${data.cid} and dateofpurchase = ${data.date}`;
+  var sql = `update investments set status = 'sold' where iid = ${data.iid} and cid = '${data.cid}' and dateofpurchase = ${data.date}`;
   // dateofpurchase varchar(255), numofshares int, curramt int, purchaseamt int, status varchar(255), iid int, cid int, FOREIGN KEY (iid) REFERENCES investor(iid), FOREIGN KEY (cid) REFERENCES company(cid)
   db.executeQuery(sql,  function (err) {
     console.log(err)
