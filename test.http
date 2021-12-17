@@ -67,6 +67,7 @@ Content-Type: application/json
 get {{host}}/investor/profile
 id: 2
 
+
 ###
 post {{host}}/investor/addshare
 Content-Type: application/json
