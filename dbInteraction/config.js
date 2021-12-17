@@ -5,6 +5,7 @@ var connection = mysql.createConnection({
   password: "abdurrahaman",
   database: "dbmsproj",
 });
+console.log("Connected!");
 
 module.exports = {
   executeQuery: function (sql, sqlParam, callback) {

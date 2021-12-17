@@ -18,9 +18,9 @@ app.use("/investor", investorRouter);
 app.use("/company", companyRouter);
 app.use("/exchange", adminRouter);
 
-app.get("/",(req,res)=>{
-  res.json({"message":"success"});
-})
+app.get("/", (req, res) => {
+  res.json({ message: "success" });
+});
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {
@@ -36,7 +36,7 @@ app.get("/",(req,res)=>{
 //   });
 // });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log("Server started...");
 });
 

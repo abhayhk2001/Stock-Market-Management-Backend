@@ -1,5 +1,4 @@
-var investorDb = require.main.require('./dbInteraction/investor');
-
+var investorDb = require.main.require("./dbInteraction/investor");
 
 // const getMe = async (req, res) => {
 //   investorDb.authorizeLogin((result)=>{
@@ -9,106 +8,98 @@ var investorDb = require.main.require('./dbInteraction/investor');
 // };//sample for testing db connectivity
 
 const authorize = async (req, res) => {
-  investorDb.authorizeLogin(req.body.username,req.body.password,(state)=>{
-    if(state == true){ 
-      res.status(200).json({
-        message: "success"
-      })
-    }
-    else{
+  investorDb.authorizeLogin(req.body.username, req.body.password, (state) => {
+    if (state == false) {
       res.status(400).json({
         message: "Bad request",
       });
+    } else {
+      res.status(400).json({
+        message: "Success",
+        token: `investor-${state}`,
+      });
     }
-  })
+  });
 };
 
 const register = async (req, res) => {
-  investorDb.registerInvestor(req.body,(state)=>{
-    if(state == true){
+  investorDb.registerInvestor(req.body, (state) => {
+    if (state == true) {
       res.status(200).json({
-        message: "success"
-      })
-    }
-    else{
+        message: "success",
+      });
+    } else {
       res.status(400).json({
         message: "Bad request",
       });
     }
-  })
+  });
 };
 
 const getProfile = async (req, res) => {
-  investorDb.getInvestorDetails(req.headers,(state, result)=>{
-    if(state == true){
+  investorDb.getInvestorDetails(req.headers, (state, result) => {
+    if (state == true) {
       res.status(200).json({
         message: "success",
-        data : result
-      })
-    }
-    else{
+        data: result,
+      });
+    } else {
       res.status(400).json({
         message: "Bad request",
       });
     }
-  })
+  });
 };
 
 const addShare = async (req, res) => {
-  investorDb.addInvestment(req.body,(state)=>{
-    if(state == true){
+  investorDb.addInvestment(req.body, (state) => {
+    if (state == true) {
       res.status(200).json({
-        message: "success"
-      })
-    }
-    else{
+        message: "success",
+      });
+    } else {
       res.status(400).json({
         message: "Bad request",
       });
     }
-  })
+  });
 };
 
 const deleteShare = async (req, res) => {
-  investorDb.removeInvestment(req.headers,(state)=>{
-    if(state == true){
+  investorDb.removeInvestment(req.headers, (state) => {
+    if (state == true) {
       res.status(200).json({
-        message: "success"
-      })
-    }
-    else{
+        message: "success",
+      });
+    } else {
       res.status(400).json({
         message: "Bad request",
       });
     }
-  })
+  });
 };
 
 const getInvestments = async (req, res) => {
-  investorDb.getInvestmentData(req.headers,(state,result)=>{
-    if(state == true){
+  investorDb.getInvestmentData(req.headers, (state, result) => {
+    if (state == true) {
       res.status(200).json({
         message: "success",
-        data: result
-      })
-    }
-    else{
+        data: result,
+      });
+    } else {
       res.status(400).json({
         message: "Bad request",
       });
     }
-  })
+  });
 };
 
-
-
-
-module.exports = { 
+module.exports = {
   // getMe,
   authorize,
   register,
   getProfile,
   addShare,
   deleteShare,
-  getInvestments
+  getInvestments,
 };
