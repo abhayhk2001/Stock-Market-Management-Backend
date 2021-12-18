@@ -44,7 +44,6 @@ post {{host}}/investor/register
 Content-Type: application/json
 
 {
-    "id": 4,
     "firstname": "harihar",
     "lastname":"pawar",
     "middlename":"s",

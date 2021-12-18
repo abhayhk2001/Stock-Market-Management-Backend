@@ -40,8 +40,8 @@ function insertbankdetails(data) {
 }
 
 function registerInvestor(data, success) {
-  var sql = `insert into investor
-                values (${data.id},'${data.firstname}','${data.lastname}','${data.middlename}','${data.pnum}',${data.noinvestments},'${data.email}')`;
+  var sql = `insert into investor(firstname, lastname, middlename, pnum, noinvestments, email)
+                values ('${data.firstname}','${data.lastname}','${data.middlename}','${data.pnum}',${data.noinvestments},'${data.email}')`;
   db.executeQuery(sql, function (err) {
     console.log(err);
     if (!err && !insertlogindetails(data) && !insertbankdetails(data)) {

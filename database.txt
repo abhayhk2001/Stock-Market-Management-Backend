@@ -3,16 +3,16 @@ create database dbmsproj
 
 tables
 create table bankdetails(accno varchar(255), name, ifsc, branch, pnum, primary key (accno))
-create table investor(iid int, firstname varchar(255), lastname varchar(255), middlename varchar(255), pnum varchar(255), noinvestments int, email varchar(255), primary key(iid))
-create table privatedetails(aadhar varchar(255), pan varchar(255), iid int, accno varchar(255), foreign key (iid) references investor (iid), foreign key (accno) references bankdetails (accno))
-create table location(addid int, addline1 varchar(255), addline2 varchar(255), city varchar(255), country varchar(255), state varchar(255),zip varchar(255), primary key (addid))
-create table company(cid varchar(255), name varchar(255), revenue bigint, noofshares int, pubshares int, shareval int, registration enum('yes','no'), exccode varchar(255), addid int, primary key (cid), foreign key (addid) references location(addid))
+create table investor(iid int auto_increment, firstname varchar(255), lastname varchar(255), middlename varchar(255), pnum varchar(255), noinvestments int, email varchar(255), primary key(iid))
+create table privatedetails(aadhar varchar(255), pan varchar(255), iid int, accno varchar(255), foreign key (iid) references investor (iid) on delete cascade on update cascade, foreign key (accno) references bankdetails (accno))
+create table location(addid int auto_increment, addline1 varchar(255), addline2 varchar(255), city varchar(255), country varchar(255), state varchar(255),zip varchar(255), primary key (addid))
+create table company(cid varchar(255), name varchar(255), revenue bigint, noofshares int, pubshares int, shareval int, registration enum('yes','no'), exccode varchar(255), addid int, primary key (cid), foreign key (addid) references location(addid) on delete cascade on update cascasde)
 create table category(catid int, categoryname varchar(255), primary key(catid))
 create table categorized(cid varchar(255), catid int, foreign key (cid) references company (cid), foreign key (catid) references category (catid))
 create table companylogin(cid varchar(255), username varchar(255), password varchar(255), foreign key(cid) references compnay(cid))
-create table investorlogin(iid varchar(255), username varchar(255), password varchar(255), foreign key(iid) references investor(iid))
-create table exchange(code varchar(255), name varchar(255), curr varchar(255), marketcap_in_millions float, nooflistings int, addid int,primary key (code), foreign key (addid) references location (addid))
-create table investments(dateofpurchase date, numofshares int, curramt int, purchaseamt int, status enum('sold','not sold'), iid int, cid varchar(255), foreign key (iid) references investor (iid), foreign key (cid) references company (cid))
+create table investorlogin(iid varchar(255), username varchar(255), password varchar(255), foreign key(iid) references investor(iid) on delete cascade on update cascade)
+create table exchange(code varchar(255), name varchar(255), curr varchar(255), marketcap_in_millions float, nooflistings int, addid int,primary key (code), foreign key (addid) references location (addid) on delete cascade on update cascade)
+create table investments(dateofpurchase date, numofshares int, curramt int, purchaseamt int, status enum('sold','not sold'), iid int, cid varchar(255), foreign key (iid) references investor (iid) on delete cascade on update cascade, foreign key (cid) references company (cid))
 
 
 
@@ -52,7 +52,6 @@ insert into categorized values('TSLA',3);
 
 run in test.http in post /investor/register
 {
-    "id": 1,
     "firstname": "abdur",
     "lastname":"rahaman",
     "middlename":null,
@@ -72,7 +71,6 @@ run in test.http in post /investor/register
 }
 
 {
-    "id": 2,
     "firstname": "ankit",
     "lastname":"chahar",
     "middlename":"singh",
@@ -92,7 +90,6 @@ run in test.http in post /investor/register
 }
 
 {
-    "id": 3,
     "firstname": "abhay",
     "lastname":"kashyap",
     "middlename":"h",
@@ -113,7 +110,6 @@ run in test.http in post /investor/register
 
 
 {
-    "id": 4,
     "firstname": "harihar",
     "lastname":"pawar",
     "middlename":"s",
@@ -133,7 +129,6 @@ run in test.http in post /investor/register
 }
 
 {
-    "id": 5,
     "firstname": "Prajwal",
     "lastname":"s",
     "middlename":null,
